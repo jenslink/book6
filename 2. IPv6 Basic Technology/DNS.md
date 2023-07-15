@@ -4,7 +4,21 @@ We assume that the reader has a good general understanding of the Domain Name Sy
 
 A specific Resource Record type is defined to embed IPv6 addresses: the AAAA Record \[[RFC3596](https://www.rfc-editor.org/info/rfc3596)]. This simply provides a 128 bit IPv6 address in the same way that an A record provides an IPv4 address. (AAAA is normally pronounced "Quad-A".)
 
-Similarly, reverse lookup is enabled by the `IP6.ARPA` domain. This is done using 4-byte nibbles respresented as hexadecimal characters, so the address `2001:db8:4006:80b:a1b3:6d7a:3f65:dd13` will appear as `3.1.d.d.5.6.f.3.a.7.d.6.3.b.1.a.b.0.8.0.6.0.0.4.8.b.d.0.1.0.0.2.IP6.ARPA.` Clearly, these entries are for computers, not for humans.
+Similarly, reverse lookup is enabled by the `IP6.ARPA` domain. This is done
+using 4-byte nibbles represented as hexadecimal characters, so the address
+`2001:db8:4006:80b:a1b3:6d7a:3f65:dd13` will appear as
+`3.1.d.d.5.6.f.3.a.7.d.6.3.b.1.a.b.0.8.0.6.0.0.4.8.b.d.0.1.0.0.2.IP6.ARPA.`
+Clearly, these entries are for computers, not for humans. A neat trick, at least
+on Linux, is to use the host command:
+
+```
+host 2001:db8:4006:80b:a1b3:6d7a:3f65:dd13
+Host 3.1.d.d.5.6.f.3.a.7.d.6.3.b.1.a.b.0.8.0.6.0.0.4.8.b.d.0.1.0.0.2.ip6.arpa not found: 3(NXDOMAIN)
+```
+
+There are also a lot of other tools / libraries to help you with this. Note that
+if you to the mapping by hand and make a mistake many DNS servers will happily
+load the data and you will have a hard time finding the issues.
 
 A corollary of defining the AAAA record is that DNS lookups that *indirectly* cause an A record lookup must also cause a AAAA lookup. This concerns NS, SRV and MX lookups.
 
