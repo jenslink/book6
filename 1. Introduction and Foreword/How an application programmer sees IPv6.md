@@ -42,6 +42,10 @@ python. And please don't hard-code IP addresses of any kind in your
 code. Always make them configurable and if possible use FQDNs instead of
 IPs.
 
+IPv6 is also important when testing software. And it gets quite complex.
+If your application both supports IPv6 and IPv4 you have to test IPv4 only,
+IPv6 only and dual-stack.
+
 Address types are discussed further in
 [2. Addresses](../2.%20IPv6%20Basic%20Technology/Addresses.md). How
 applications relate to a mixture of IPv4 and IPv6 addresses is also
